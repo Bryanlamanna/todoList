@@ -25,6 +25,13 @@ body {
     font-size: 20px;
 }
 
+
+.newTaskInput::placeholder {
+    color: rgb(190, 190, 191);
+    font-size: large;
+    }
+
+
 .newTaskBtn {
     border-radius: 5px;
     outline: none;
@@ -39,6 +46,7 @@ body {
 
 .newTaskBtn:hover {
     background-color: rgb(46, 46, 46);
+    color: white;
 }
 
 #todolist {
@@ -49,28 +57,31 @@ body {
 }
 
 #todolist li {
+    
     list-style-type: none;
     text-transform: capitalize;
-    font-size: 1.rem;
+    font-size: 14px;
     display: flex;
     justify-content: space-between;
+    transition: .4s;
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .task {
-    border-radius: 5px;
-    background-color: azure;
+    height: 30px;
     color: rgb(0, 0, 0);
-    transition: .4s;
-    font-size: large;
 }
 
-.task:hover {
+#todolist li:hover {
     background-color: rgb(77, 77, 77);
     color: aliceblue;
+    transform: translateX(-5%);
 }
 
 .okBt {
-    padding: 5px;
+    
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
@@ -80,10 +91,17 @@ body {
     height: 40px;
     font-size: 15px;
     transition: 0.4s;
-    background-color: rgb(112, 112, 112);
+    background-color: rgb(164, 164, 164);
+    transform: translate(12%,-12%);
 }
 
 .okBt:hover {
     background-color: rgb(46, 46, 46);
     color: aliceblue;
+    transform: scale(1.1), translate(12%,-12%);
+    border: 5px;
+    border-color: white;
+     
 }
+
+
