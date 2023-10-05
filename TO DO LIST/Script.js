@@ -27,6 +27,6 @@ function showTask() {
     list.innerHTML = '';
 
     for (var i = 0 ; i < values.length; i++) {
-        list.innerHTML += `<li class="tasK">${values[i]['name']}<button class="okBt">ok</button></li>`;
+        list.innerHTML += `<li class="task">${values[i]['name']}<button class="okBt">ok</button></li>`;
     }
 }

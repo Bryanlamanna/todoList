@@ -11,7 +11,7 @@ body {
 .contentInsert {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
 }
 
@@ -60,6 +60,13 @@ body {
     border-radius: 5px;
     background-color: azure;
     color: rgb(0, 0, 0);
+    transition: .4s;
+    font-size: large;
+}
+
+.task:hover {
+    background-color: rgb(77, 77, 77);
+    color: aliceblue;
 }
 
 .okBt {
@@ -78,4 +85,5 @@ body {
 
 .okBt:hover {
     background-color: rgb(46, 46, 46);
+    color: aliceblue;
 }
