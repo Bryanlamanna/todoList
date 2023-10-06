@@ -5,18 +5,23 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
+}
+
+.header {
+    font-size: 50px;
 }
 
 .contentInsert {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    translate: 25px;
     flex-wrap: wrap;
 }
 
 .newTaskInput {
-    width: 250px;
+    
+    width: 300px;
     height: 18px;
     outline: none;
     border-radius: 5px;
@@ -41,38 +46,40 @@ body {
     font-size: 30px;
     cursor: pointer;
     transition: 0.4s;
-    background-color: rgb(112, 112, 112);
+    background-color: rgb(164, 164, 164);
+    translate: -50px;
 }
 
 .newTaskBtn:hover {
-    background-color: rgb(46, 46, 46);
+    background-color: rgb(56, 122, 49);
     color: white;
+    
+    transform: translate(-.5rem,-.5rem);
 }
 
 #todolist {
     display: flex;
-    flex-direction: column;
-    padding: 22px;
-    gap: 1rem;
+    align-items: end;
+    margin: 4px;
+    
 }
 
 #todolist li {
-    
+    margin: 4px;
+    width: 250px;
     list-style-type: none;
     text-transform: capitalize;
-    font-size: 14px;
+    font-size: 17px;
     display: flex;
     justify-content: space-between;
     transition: .4s;
     background-color: rgb(255, 255, 255);
     padding: 5px;
     border-radius: 5px;
+    height: 30px;
+    color: rgb(0, 0, 0)
 }
 
-.task {
-    height: 30px;
-    color: rgb(0, 0, 0);
-}
 
 #todolist li:hover {
     background-color: rgb(77, 77, 77);
@@ -96,12 +103,33 @@ body {
 }
 
 .okBt:hover {
-    background-color: rgb(46, 46, 46);
+    background-color: rgb(56, 122, 49);
     color: aliceblue;
-    transform: scale(1.1), translate(12%,-12%);
+    transform: translate(0,-.5rem);
     border: 5px;
     border-color: white;
+    box-shadow: 1rem;
      
 }
 
 
+.clearBtn {
+    translate: 56px;
+    margin-top: 1px;
+    height: 25px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s;
+}
+
+.clearBtn:hover {
+    background-color: rgb(141, 44, 44);
+    color: aliceblue;
+    transform: scale(1.1);
+    border: 5px;
+    border-color: white;
+
+}
