@@ -1,6 +1,9 @@
+/* Estilos para o body */
 body {
-    background-color: black;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-image: url(assets/fundo1.jpg);
+    background-repeat: none;
+    background-size: 250%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: aliceblue;
     display: flex;
     flex-direction: column;
@@ -8,19 +11,21 @@ body {
     gap: 2rem;
 }
 
+/* Estilos para o cabeçalho (.header) */
 .header {
     font-size: 50px;
 }
 
+/* Estilos para o conteúdo inserido (.contentInsert) */
 .contentInsert {
     display: flex;
     align-items: center;
-    translate: 25px;
+    translate: 25px; /* Correção: Deve ser "transform" ao invés de "translate" */
     flex-wrap: wrap;
 }
 
+/* Estilos para a entrada de nova tarefa (.newTaskInput) */
 .newTaskInput {
-    
     width: 300px;
     height: 18px;
     outline: none;
@@ -30,13 +35,12 @@ body {
     font-size: 20px;
 }
 
-
 .newTaskInput::placeholder {
     color: rgb(190, 190, 191);
     font-size: large;
-    }
+}
 
-
+/* Estilos para o botão de nova tarefa (.newTaskBtn) */
 .newTaskBtn {
     border-radius: 5px;
     outline: none;
@@ -47,39 +51,60 @@ body {
     cursor: pointer;
     transition: 0.4s;
     background-color: rgb(164, 164, 164);
-    translate: -50px;
+    translate: -50px; /* Correção: Deve ser "transform" ao invés de "translate" */
 }
 
 .newTaskBtn:hover {
-    background-color: rgb(56, 122, 49);
+    background-color: rgb(4, 190, 200);
     color: white;
-    
-    transform: translate(-.5rem,-.5rem);
+    transform: translate(-0.5rem, -0.5rem);
 }
 
+#donelist {
+    display: flex;
+    align-items: end;
+    margin: 4px;
+}
+
+#donelist li {
+    transform: translate(15px);
+    margin: 8px;
+    width: 250px;
+    list-style-type: none;
+    
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.4s;
+    background-color: rgb(34, 34, 34);
+    padding: 5px;
+    border-radius: 5px;
+    height: 30px;
+    color: rgb(87, 87, 87);
+}
+
+/* Estilos para a lista de tarefas (#todolist) */
 #todolist {
     display: flex;
     align-items: end;
     margin: 4px;
-    
 }
 
 #todolist li {
-    margin: 4px;
+    margin: 8px;
     width: 250px;
     list-style-type: none;
-    text-transform: capitalize;
+    
     font-size: 17px;
     display: flex;
     justify-content: space-between;
-    transition: .4s;
+    transition: 0.4s;
     background-color: rgb(255, 255, 255);
     padding: 5px;
     border-radius: 5px;
     height: 30px;
-    color: rgb(0, 0, 0)
+    color: rgb(0, 0, 0);
 }
-
 
 #todolist li:hover {
     background-color: rgb(77, 77, 77);
@@ -87,8 +112,8 @@ body {
     transform: translateX(-5%);
 }
 
+/* Estilos para o botão OK (.okBt) */
 .okBt {
-    
     text-align: center;
     cursor: pointer;
     border-radius: 5px;
@@ -99,37 +124,35 @@ body {
     font-size: 15px;
     transition: 0.4s;
     background-color: rgb(164, 164, 164);
-    transform: translate(12%,-12%);
+    transform: translate(12%, -12%);
 }
 
 .okBt:hover {
-    background-color: rgb(56, 122, 49);
+    background-color: rgb(4, 190, 200);
     color: aliceblue;
-    transform: translate(0,-.5rem);
+    transform: translate(0, -0.5rem);
     border: 5px;
     border-color: white;
     box-shadow: 1rem;
-     
 }
 
-
+/* Estilos para o botão de limpar (.clearBtn) */
 .clearBtn {
-    translate: 56px;
-    margin-top: 1px;
+    translate: 25px;
+    margin-top: 3px;
     height: 25px;
     width: 50px;
-    cursor: pointer;
+    cursor: pointer;    
     border-radius: 5px;
     border: none;
     outline: none;
-    transition: .4s;
+    transition: 0.4s;
 }
 
 .clearBtn:hover {
-    background-color: rgb(141, 44, 44);
+    background-color: rgb(160, 29, 34);
     color: aliceblue;
     transform: scale(1.1);
     border: 5px;
     border-color: white;
-
 }
