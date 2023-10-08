@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>To do List</title>
+	<style>
+   /* Estilos para o body */
+body {
+    
+    background-image: url(https://cdn.discordapp.com/attachments/856553081570852874/1160606165869285447/fundo1.jpg?ex=653545b8&is=6522d0b8&hm=c1aeca33d9ed8a6184a351a04ece8c5ce0ec66dcfe10d5d713cedb07a997d5c0&.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Estilos para o cabeçalho (.header) */
+.header {
+    font-size: 50px;
+}
+
+/* Estilos para o conteúdo inserido (.contentInsert) */
+.contentInsert {
+    display: flex;
+    align-items: center;
+    translate: 25px; /* Correção: Deve ser "transform" ao invés de "translate" */
+    flex-wrap: wrap;
+}
+
+/* Estilos para a entrada de nova tarefa (.newTaskInput) */
+.newTaskInput {
+    width: 300px;
+    height: 18px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    padding: 16px;
+    font-size: 20px;
+}
+
+.newTaskInput::placeholder {
+    color: rgb(190, 190, 191);
+    font-size: large;
+}
+
+/* Estilos para o botão de nova tarefa (.newTaskBtn) */
+.newTaskBtn {
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.4s;
+    background-color: rgb(164, 164, 164);
+    translate: -50px; /* Correção: Deve ser "transform" ao invés de "translate" */
+}
+
+.newTaskBtn:hover {
+    background-color: #c8cbb2;
+    color: white;
+    transform: translate(-0.5rem, -0.5rem);
+}
+
+#donelist {
+    display: flex;
+    align-items: end;
+    margin: 4px;
+}
+
+#donelist li {
+    transform: translate(15px);
+    margin: 8px;
+    width: 250px;
+    list-style-type: none;
+    
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.4s;
+    background-color: rgb(34, 34, 34);
+    padding: 5px;
+    border-radius: 5px;
+    height: 30px;
+    color: rgb(87, 87, 87);
+}
+
+/* Estilos para a lista de tarefas (#todolist) */
+#todolist {
+    display: flex;
+    align-items: end;
+    margin: 4px;
+}
+
+#todolist li {
+    margin: 8px;
+    width: 250px;
+    list-style-type: none;
+    
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    transition: 0.4s;
+    background-color: rgb(255, 255, 255);
+    padding: 5px;
+    border-radius: 5px;
+    height: 30px;
+    color: rgb(0, 0, 0);
+}
+
+#todolist li:hover {
+    background-color: rgb(77, 77, 77);
+    color: aliceblue;
+    transform: translateX(-5%);
+}
+
+/* Estilos para o botão OK (.okBt) */
+.okBt {
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    transition: 0.4s;
+    background-color: rgb(164, 164, 164);
+    transform: translate(12%, -12%);
+}
+
+.okBt:hover {
+    background-color: #939c8c;
+    color: aliceblue;
+    transform: translate(0, -0.5rem);
+    border: 5px;
+    border-color: white;
+    box-shadow: 1rem;
+}
+
+/* Estilos para o botão de limpar (.clearBtn) */
+.clearBtn {
+    translate: 25px;
+    margin-top: 10px;
+    height: 25px;
+    width: 50px;
+    cursor: pointer;    
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.clearBtn:hover {
+    background-color: rgb(160, 29, 34);
+    color: aliceblue;
+    transform: scale(1.1);
+    border: 5px;
+    border-color: white;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Classe para animação de fade out */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+        </style>
+</head>
+<body>
+    <div class="header" id="header">
+        To Do List[bryan]
+    </div>
+        <div class="content">
+            <div class="contentInsert">
+                <input class="newTaskInput" type="text" id="newTaskInput" placeholder="digite uma nova task...">
+                <button onclick="newTask()" class="newTaskBtn" title="clique aqui para adicionar uma nova task">+</button>
+            </div>   
+            <div class="contentList">
+                <ul id="todolist"></ul>   
+                <button id="clearTasks" onclick="clearTasks()" class="clearBtn">clear</button>
+            </div> 
+            <div class="doneContentList">
+                <ul id="donelist"></ul>   
+            </div> 
+        </div>
+    <script> 
+   
+//CONSTANTE PARA DEFINIR O NOME DA KEY NO INTERNAL STORAGE
+
+const localStorageKey1 = 'to-do-list';
+const localStorageKey2 = 'done-list';
+
+let clearBtn = document.getElementById("clearTasks");
+clearBtn.style.display = 'block';
+
+let values = JSON.parse(localStorage.getItem(localStorageKey1) || "[]");
+    let list = document.getElementById("todolist");
+    
+    if (values.length === 0) {
+        // Se não houver tarefas, oculta a lista
+        list.style.display = 'none';
+        let clearBtn = document.getElementById("clearTasks");
+        clearBtn.style.display = 'none';
+    } else {
+        list.style.display = 'block'; // Exibe a lista
+        list.innerHTML = '';
+
+        let clearBtn = document.getElementById("clearTasks");
+        clearBtn.style.display = 'block';
+
+        for (var i = 0; i < values.length; i++) {
+            list.innerHTML += `<li class="task">${values[i]['name']}<button onclick="doTask('${values[i]['name']}')" class="okBt">✔</button></li>`;
+        }
+        
+    }
+
+
+      
+
+// METODOS QUE DEVEM INCIAR AO CARREGAR OU RECARREGAR A PAGINA 
+
+window.load = function showTask() {
+    let values = JSON.parse(localStorage.getItem(localStorageKey1) || "[]");
+    let list = document.getElementById("todolist");
+    
+    if (values.length === 0) {
+        // Se não houver tarefas, oculta a lista
+        list.style.display = 'none';
+        let clearBtn = document.getElementById("clearTasks");
+        clearBtn.style.display = 'none';
+    } else {
+        list.style.display = 'block'; // Exibe a lista
+        list.innerHTML = '';
+
+        let clearBtn = document.getElementById("clearTasks");
+        clearBtn.style.display = 'block';
+
+        for (var i = 0; i < values.length; i++) {
+            list.innerHTML += `<li class="task">${values[i]['name']}<button onclick="doTask('${values[i]['name']}')" class="okBt">✔</button></li>`;
+        }
+        
+    }
+    limpaCampo();
+}
+
+window.onload = function showDoneTask() {
+    let values = JSON.parse(localStorage.getItem(localStorageKey2) || "[]");
+    let list = document.getElementById("donelist");
+    
+        list.style.display = 'block'; 
+        list.innerHTML = '';
+       
+        for (var i = 0; i < values.length; i++) {
+            list.innerHTML += `<li class="task">${values[i]['name']}</li>`;
+        }
+        
+}
+
+// METODO PARA ADICIONAR UMA NOVA TASK NA INTERNAL STORAGE
+
+function newTask() {
+    var campoTask = document.getElementById("newTaskInput");
+    var task = campoTask.value;
+
+    if (!task){
+        alert('insira a descrição da tarefa!')
+    } else {
+        let values = JSON.parse(localStorage.getItem(localStorageKey1) || "[]");
+        values.push({
+            name: campoTask.value
+        });
+        localStorage.setItem(localStorageKey1, JSON.stringify(values));
+    }
+    showTask();
+    limpaCampo();
+}
+
+//METODO PARA MONTAR PAINEL COM LISTA DE TASKS DA INTERNAL STORAGE
+
+function showTask() {
+    let values = JSON.parse(localStorage.getItem(localStorageKey1) || "[]");
+    let list = document.getElementById("todolist");
+    
+    if (values.length === 0) {
+        // Se não houver tarefas, oculta a lista
+        list.style.display = 'none';
+        let clearBtn = document.getElementById("clearTasks");
+        clearBtn.style.display = 'none';
+    } else {
+        list.style.display = 'block'; // Exibe a lista
+        list.innerHTML = '';
+
+        let clearBtn = document.getElementById("clearTasks");
+        clearBtn.style.display = 'block';
+
+        for (var i = 0; i < values.length; i++) {
+            list.innerHTML += `<li class="task">${values[i]['name']}<button onclick="doTask('${values[i]['name']}')" class="okBt">✔</button></li>`;
+        }
+        
+    }
+    limpaCampo();
+}
+
+
+//METODO PARA REMOVER UMA TASK DO INTERNAL STORAGE
+
+function doTask(data) {
+
+    let values = JSON.parse(localStorage.getItem(localStorageKey1) || "[]");
+    let index = values.findIndex(x => x.name == data);
+    if (index !== -1) {
+        values.splice(index, 1);
+        localStorage.setItem(localStorageKey1, JSON.stringify(values));
+        showTask(); // Chame showTask() somente após a remoção bem-sucedida
+        newDoneTask(data);
+    }
+}
+
+//METODO PARA MOSTRAR AS TASKS CONCLUIDAS
+
+function showDoneTask() {
+    let values = JSON.parse(localStorage.getItem(localStorageKey2) || "[]");
+    let list = document.getElementById("donelist");
+     
+        if (values.length === 0) {
+            // Se não houver tarefas, oculta a lista
+            list.style.display = 'none';
+            let clearBtn = document.getElementById("clearTasks");
+            clearBtn.style.display = 'none';
+        } else {
+            list.style.display = 'block'; // Exibe a lista
+            list.innerHTML = '';
+    
+            let clearBtn = document.getElementById("clearTasks");
+            clearBtn.style.display = 'block';
+       
+        for (var i = 0; i < values.length; i++) {
+            list.innerHTML += `<li class="task">${values[i]['name']}</li>`;
+        }
+    } 
+    }
+    
+//METODO PARA TRANSFERIR UMA TASK PARA LISTA DE CONCLUIDAS
+
+function newDoneTask(data) {
+        let values = JSON.parse(localStorage.getItem(localStorageKey2) || "[]");
+        values.push({
+            name: data
+        });
+        localStorage.setItem(localStorageKey2, JSON.stringify(values));
+    
+    showDoneTask();
+    limpaCampo();
+}
+
+//METODO PARA LIMPAR AS TASKS DO INTERNAL STORAGE
+
+function clearTasks() {
+    localStorage.removeItem(localStorageKey1);
+
+    localStorage.removeItem(localStorageKey2);
+// Chama showTask() para ocultar a lista
+showTask();
+showDoneTask();
+
+}
+
+//METODO PARA LIMPAR O CAMPO INPUT APÓS REGISTRAR TASKS
+
+function limpaCampo() {
+    document.getElementById("newTaskInput").value = '';
+}
+
+
+    </script>
+</body>
+</html>
