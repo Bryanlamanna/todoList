@@ -1,8 +1,9 @@
 /* Estilos para o body */
 body {
+    
     background-image: url(assets/fundo1.jpg);
-    background-repeat: none;
-    background-size: 250%;
+    background-repeat: no-repeat;
+    background-size: 100%;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: aliceblue;
     display: flex;
@@ -55,7 +56,7 @@ body {
 }
 
 .newTaskBtn:hover {
-    background-color: rgb(4, 190, 200);
+    background-color: #c8cbb2;
     color: white;
     transform: translate(-0.5rem, -0.5rem);
 }
@@ -128,7 +129,7 @@ body {
 }
 
 .okBt:hover {
-    background-color: rgb(4, 190, 200);
+    background-color: #939c8c;
     color: aliceblue;
     transform: translate(0, -0.5rem);
     border: 5px;
@@ -139,7 +140,7 @@ body {
 /* Estilos para o botão de limpar (.clearBtn) */
 .clearBtn {
     translate: 25px;
-    margin-top: 3px;
+    margin-top: 10px;
     height: 25px;
     width: 50px;
     cursor: pointer;    
@@ -155,4 +156,15 @@ body {
     transform: scale(1.1);
     border: 5px;
     border-color: white;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Classe para animação de fade out */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }

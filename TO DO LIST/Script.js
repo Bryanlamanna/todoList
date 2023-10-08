@@ -4,7 +4,32 @@
 const localStorageKey1 = 'to-do-list';
 const localStorageKey2 = 'done-list';
 
+let clearBtn = document.getElementById("clearTasks");
+clearBtn.style.display = 'block';
 
+let values = JSON.parse(localStorage.getItem(localStorageKey1) || "[]");
+    let list = document.getElementById("todolist");
+    
+    if (values.length === 0) {
+        // Se não houver tarefas, oculta a lista
+        list.style.display = 'none';
+        let clearBtn = document.getElementById("clearTasks");
+        clearBtn.style.display = 'none';
+    } else {
+        list.style.display = 'block'; // Exibe a lista
+        list.innerHTML = '';
+
+        let clearBtn = document.getElementById("clearTasks");
+        clearBtn.style.display = 'block';
+
+        for (var i = 0; i < values.length; i++) {
+            list.innerHTML += `<li class="task">${values[i]['name']}<button onclick="doTask('${values[i]['name']}')" class="okBt">✔</button></li>`;
+        }
+        
+    }
+
+
+      
 
 // METODOS QUE DEVEM INCIAR AO CARREGAR OU RECARREGAR A PAGINA 
 
@@ -159,3 +184,5 @@ showDoneTask();
 function limpaCampo() {
     document.getElementById("newTaskInput").value = '';
 }
+
+
